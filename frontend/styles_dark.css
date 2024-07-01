@@ -1,0 +1,124 @@
+/* Stile per il corpo della pagina */
+body {
+    background-color: #121212; /* Colore di sfondo scuro */
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Stili per il contenitore principale */
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    background-color: #1f1f1f; /* Colore di sfondo del contenitore scuro */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Stili per i campi del modulo */
+.form-control {
+    background-color: #2c2c2c;
+    border: 1px solid #444444;
+    color: #e0e0e0;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #1e88e5; /* Colore del bordo al focus */
+    box-shadow: 0 0 5px rgba(30, 136, 229, 0.5); /* Effetto ombra al focus */
+}
+
+/* Stile per il pulsante principale */
+.btn-primary {
+    background-color: #1e88e5;
+    border-color: #1e88e5;
+    border-radius: 15px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-out;
+}
+
+.btn-primary:hover {
+    background-color: #1565c0;
+    border-color: #0d47a1;
+    transform: scale(1.05); /* Effetto di zoom al hover */
+}
+
+/* Stile per le etichette dei campi del modulo */
+.form-group label {
+    color: #b0bec5; /* Colore più chiaro per le etichette */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Stile per l'intestazione */
+h1, h2 {
+    text-align: center;
+    color: #e0e0e0;
+}
+
+h4 {
+    text-align: left;
+    padding-left: 25px;
+    color: #e0e0e0;
+}
+
+/* Stile per il footer */
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #b0bec5;
+    font-size: 0.9rem;
+}
+
+/* Stili aggiuntivi per migliorare l'aspetto generale */
+/* Esempio di gradient background */
+.container {
+    background: linear-gradient(to right, #1f1f1f, #2c2c2c);
+}
+
+/* Esempio di bordi arrotondati per pulsanti e form */
+.btn, .form-control {
+    border-radius: 8px;
+}
+
+/* Aggiungi padding interno ai pulsanti */
+.btn {
+    padding: 0.75rem 1.5rem;
+}
+
+/* Effetto ombra sottile su contenitore */
+.container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Miglioramento spaziatura paragrafi */
+p {
+    margin-bottom: 1.5rem;
+}
+
+/* Miglioramento spaziatura delle liste */
+ul {
+    padding-left: 20px;
+    margin-bottom: 1.5rem;
+}
+
+/* Stile per le voci delle liste */
+ul li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Stili per il contact box */
+.contact-box {
+    background-color: #2c2c2c;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contact-box h5 {
+    color: #e0e0e0;
+    text-align: center;
+    margin-bottom: 20px;
+}
