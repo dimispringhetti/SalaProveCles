@@ -74,7 +74,8 @@ footer {
 /* Stili aggiuntivi per migliorare l'aspetto generale */
 /* Esempio di gradient background */
 .container {
-    background: linear-gradient(to right, #ffffff, #f2f8ff);
+    opacity: 0.95;
+    background: linear-gradient(to right, #ffffff, #d6e6fa);
 }
 
 /* Esempio di bordi arrotondati per pulsanti e form */

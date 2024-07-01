@@ -43,6 +43,7 @@ app.post('/sendContactData', (req, res) => {
             return;
         }
     });
+    
     // stampa a console
     console.log(contactData);
 
