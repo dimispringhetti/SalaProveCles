@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
+const { Console } = require('console');
 
 // Creazione di un'istanza di Express
 const app = express();
@@ -15,20 +16,56 @@ app.use(express.json());
 
 app.post('/sendData', (req, res) => {
     const receivedData = req.body.data;
-
-    // Scrittura dei dati ricevuti in un file di testo
-    fs.writeFile('data.txt', JSON.stringify(receivedData), (err) => {
+    let responseData;
+    // Lettura del file CSV delle prenotazioni
+    const bookings = [];
+    fs.readFile('data.csv', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
+            console.log("lesgosky hai sbagliato coglione");
             return;
         }
-    });
-    // stampa a console
-    console.log(receivedData);
 
-    // Risposta al client sempre "not available"
-    const responseData = "not available";
-    
+        // Dividi il contenuto del file in righe
+        const lines = data.trim().split('\n');
+
+        // Parsa ogni riga del CSV (escludendo l'intestazione)
+        const headers = lines[0].split(',');
+        for (let i = 1; i < lines.length; i++) {
+            const row = lines[i].split(',');
+            if (row.length === headers.length) {
+                const booking = {
+                    DATA: row[0],
+                    ORA_INIZIO: row[1],
+                    ORA_FINE: row[2],
+                    NOME: row[3],
+                    COGNOME: row[4],
+                    EMAIL: row[5]
+                };
+                bookings.push(booking);
+            }
+        }
+
+        // Verifica la disponibilità della sala per la nuova prenotazione
+        const available = isRoomAvailable(receivedData, bookings);
+
+        if (available) {
+            const csvData = Object.values(receivedData).join(',') + '\n';
+
+            const filename = 'data.csv';
+
+            fs.appendFile(filename, csvData, (err) => {
+                if (err) throw err;
+            });
+
+            // Risposta al client "available"
+            const responseData = "available";
+        } else {
+            // Risposta al client "not available"
+            console.log("check");
+            const responseData = "not available";
+        }
+    });
     res.json({ response: responseData });
 });
 
@@ -44,12 +81,9 @@ app.post('/sendContactData', (req, res) => {
             return;
         }
     });
-    
     // stampa a console
     console.log(contactData);
-
-    // Risposta al client "success"
-    const responseData = "success";
+    
     res.json({ response: responseData });
 });
 
@@ -57,3 +91,25 @@ app.post('/sendContactData', (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
+
+// Funzione per verificare la disponibilità della sala
+function isRoomAvailable(newBooking, bookings) {
+    const { date, startTime, endTime } = newBooking;
+
+    // Converti i tempi in formati compatibili
+    const newStartTime = new Date(`${date} ${startTime}`);
+    const newEndTime = new Date(`${date} ${endTime}`);
+
+    // Cicla attraverso le prenotazioni esistenti
+    for (const booking of bookings) {
+        const bookingStartTime = new Date(`${booking.DATA} ${booking.ORA_INIZIO}`);
+        const bookingEndTime = new Date(`${booking.DATA} ${booking.ORA_FINE}`);
+
+        // Controlla se c'è sovrapposizione di orari
+        if (newStartTime < bookingEndTime && newEndTime > bookingStartTime) {
+            return false; // Vi è una sovrapposizione, la sala non è disponibile
+        }
+    }
+
+    return true; // Nessuna sovrapposizione trovata, la sala è disponibile
+}

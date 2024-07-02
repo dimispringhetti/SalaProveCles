@@ -1,158 +1,115 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const bookingForm = document.getElementById('bookingForm');
-    bookingForm.addEventListener('submit', async (event) => {
-        event.preventDefault();  // Evita l'invio del modulo
+// Importa i moduli necessari
+const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
+const { Console } = require('console');
 
-        const date = document.getElementById('date').value;
-        const startTime = document.getElementById('start-time').value;
-        const endTime = document.getElementById('end-time').value;
-        const firstName = document.getElementById('first-name').value;
-        const lastName = document.getElementById('last-name').value;
-        const email = document.getElementById('email').value;
+// Creazione di un'istanza di Express
+const app = express();
 
-        // Controlla se l'ora di inizio è prima dell'ora di fine
-        if (!startEndTime(startTime, endTime)) {
-            alert('L\'ora di inizio deve essere prima dell\'ora di fine.');
+// Imposta la porta del server
+const port = 3000;
+
+// Middleware per gestire i dati JSON
+app.use(cors());
+app.use(express.json());
+
+app.post('/sendData', (req, res) => {
+    const receivedData = req.body.data;
+    let responseData;
+    // Lettura del file CSV delle prenotazioni
+    const bookings = [];
+    fs.readFile('data.csv', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            console.log("lesgosky hai sbagliato coglione");
             return;
         }
 
-        // Controlla se la data è nel futuro
-        if (!dateInFuture(startTime, date)) {
-            alert('La data e l\'ora devono essere nel futuro.');
-            return;
+        // Dividi il contenuto del file in righe
+        const lines = data.trim().split('\n');
+
+        // Parsa ogni riga del CSV (escludendo l'intestazione)
+        const headers = lines[0].split(',');
+        for (let i = 1; i < lines.length; i++) {
+            const row = lines[i].split(',');
+            if (row.length === headers.length) {
+                const booking = {
+                    DATA: row[0],
+                    ORA_INIZIO: row[1],
+                    ORA_FINE: row[2],
+                    NOME: row[3],
+                    COGNOME: row[4],
+                    EMAIL: row[5]
+                };
+                bookings.push(booking);
+            }
         }
 
-        // Validazione email
-        if (!isValidEmail(email)) {
-            alert('Inserire un indirizzo email valido.');
-            return;
-        }
+        // Verifica la disponibilità della sala per la nuova prenotazione
+        const available = isRoomAvailable(receivedData, bookings);
 
-        // salvataggio dati in un oggetto json
-        const data = {
-            date: date,
-            startTime: startTime,
-            endTime: endTime,
-            firstName: firstName,
-            lastName: lastName,
-            email: email
-        };
+        if (available) {
+            const csvData = Object.values(receivedData).join(',') + '\n';
 
-        // invio dati al server
-        const answer = await sendData(data);
+            const filename = 'data.csv';
 
-        // se il server risponde "not available" mostra un messaggio di errore
-        if (answer === "not available") {
-            alert('Data e ora non disponibili, prova con un altro orario.');
-            return;
-        }
+            fs.appendFile(filename, csvData, (err) => {
+                if (err) throw err;
+            });
 
-        // Se il server risponde con successo mostra un messaggio di conferma
-        else {
-            // Crea un messaggio di conferma
-            const confirmationMessage = `
-                Prenotazione confermata!
-                ti arriverà una mail di conferma con i dettagli della prenotazione e il codice di ingresso.
-
-                Data: ${date}
-                Ora di Inizio: ${startTime}
-                Ora di Fine: ${endTime}
-                Nome: ${firstName} ${lastName}
-                Email: ${email}
-            `;
-
-            // Mostra il messaggio di conferma
-            alert(confirmationMessage);
-
-            // Reset del modulo
-            bookingForm.reset();
-        }
-    });
-
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault();  // Evita l'invio del modulo
-
-        const name = document.getElementById('contact-name').value;
-        const email = document.getElementById('contact-email').value;
-        const message = document.getElementById('contact-message').value;
-
-        // Validazione email
-        if (!isValidEmail(email)) {
-            alert('Inserire un indirizzo email valido.');
-            return;
-        }
-
-        // salvataggio dati in un oggetto json
-        const data = {
-            name: name,
-            email: email,
-            message: message
-        };
-
-        // invio dati al server
-        const answer = await sendContactData(data);
-
-        // se il server risponde con successo mostra un messaggio di conferma
-        if (answer === "success") {
-            alert('Messaggio inviato con successo!');
-
-            // Reset del modulo
-            contactForm.reset();
+            // Risposta al client "available"
+            const responseData = "available";
         } else {
-            alert('Si è verificato un errore, riprova più tardi.');
+            // Risposta al client "not available"
+            console.log("check");
+            const responseData = "not available";
         }
     });
+    res.json({ response: responseData });
 });
 
-// Funzione per validare l'email
-function isValidEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
+// Nuova rotta per gestire i dati del modulo di contatto
+app.post('/sendContactData', (req, res) => {
+    const contactData = req.body.data;
 
-// Funzione per controllare se l'ora di inizio è prima dell'ora di fine
-function startEndTime(startTime, endTime) {
-    return startTime < endTime;
-}
-
-// Funzione per controllare se la data è nel futuro
-function dateInFuture(startTime, date) {
-    const currentDate = new Date();
-    const selectedDate = new Date(date + 'T' + startTime);
-    return currentDate < selectedDate;
-}
-
-// Funzione per inviare i dati al server
-async function sendData(data) {
-    const response = await fetch('http://localhost:3000/sendData', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: data })
+    // Aggiunta dei dati ricevuti in un file di testo
+    fs.appendFile('contactMessages.txt', JSON.stringify(contactData) + '\n', (err) => {
+        if (err) {
+            console.error(err);
+            res.json({ response: 'error' });
+            return;
+        }
     });
+    // stampa a console
+    console.log(contactData);
+    
+    res.json({ response: responseData });
+});
 
-    // attesa risposta
-    const responseData = await response.json();
+// Definizione della rotta per ricevere i dati
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
+});
 
-    // restituisce la risposta come stringa
-    return responseData.response;
-}
+// Funzione per verificare la disponibilità della sala
+function isRoomAvailable(newBooking, bookings) {
+    const { date, startTime, endTime } = newBooking;
 
-// Funzione per inviare il messaggio di contatto al server
-async function sendContactData(data) {
-    const response = await fetch('http://localhost:3000/sendContactData', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: data })
-    });
+    // Converti i tempi in formati compatibili
+    const newStartTime = new Date(`${date} ${startTime}`);
+    const newEndTime = new Date(`${date} ${endTime}`);
 
-    // attesa risposta
-    const responseData = await response.json();
+    // Cicla attraverso le prenotazioni esistenti
+    for (const booking of bookings) {
+        const bookingStartTime = new Date(`${booking.DATA} ${booking.ORA_INIZIO}`);
+        const bookingEndTime = new Date(`${booking.DATA} ${booking.ORA_FINE}`);
 
-    // restituisce la risposta come stringa
-    return responseData.response;
+        // Controlla se c'è sovrapposizione di orari
+        if (newStartTime < bookingEndTime && newEndTime > bookingStartTime) {
+            return false; // Vi è una sovrapposizione, la sala non è disponibile
+        }
+    }
+
+    return true; // Nessuna sovrapposizione trovata, la sala è disponibile
 }
