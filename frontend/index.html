@@ -7,31 +7,25 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
-<body style="background-image: url('foto_sala.jpg');">
-
+<body>
+ 
 <div class="container">
     <h1 class="mb-4">Sala Prove Don Orione Cles</h1>
 
     <p class="mb-4">La Sala Prove Don Orione Cles è un progetto dedicato alla comunità musicale locale, offrendo uno spazio gratuito a disposizione di band e musicisti per esercitarsi. Situata a Cles, questa sala è pensata per favorire la creatività e lo sviluppo artistico senza oneri finanziari. È dotata di attrezzature di base necessarie per le prove musicali, promuovendo la musica come parte integrante della cultura locale.</p>
     
-    <h2 class="mb-3">Attrezzature Disponibili:</h2>
-    <ul class="mb-4">
-        <li>Amplificatore per chitarra</li>
-        <li>Amplificatore per basso</li>
-        <li>Batteria</li>
-        <li>Impianto audio</li>
-        <li>Tastiera</li>
-    </ul>
-
-    <h2 class="mb-3">Regolamento</h2>
-    <p class="mb-4">Per garantire un uso equo e armonioso della Sala Prove Don Orione, è necessario rispettare le seguenti regole:</p>
-    <ul class="mb-4">
-        <li>È obbligatorio rispettare l'orario concordato</li>
-        <li>È vietato fumare all'interno della sala</li>
-        <li>È vietato consumare cibo e bevande all'interno della sala</li>
-        <li>È necessario lasciare la sala in ordine e pulita</li>
-        <li>È necessario avvertire nella sezione dedicata del sito in caso di problemi</li>
-    </ul>
+    <div class="row mb-4">
+        <div class="col-md-6 mb-2">
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#attrezzatureModal">
+                Attrezzature Disponibili
+            </button>
+        </div>
+        <div class="col-md-6 mb-2">
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#regolamentoModal">
+                Regolamento
+            </button>
+        </div>
+    </div>
 
     <h2 class="mb-3">Come Prenotarsi:</h2>
     <p class="mb-4">Per prenotare la Sala Prove Don Orione a Cles, è necessario compilare il modulo di prenotazione disponibile sul nostro sito web. Una volta compilato, riceverai un codice di accesso tramite email. Questo codice ti consentirà di aprire la scatoletta contenente le chiavi della sala esclusivamente nell'orario prenotato. Assicurati di rispettare l'orario concordato per garantire un uso equo e armonioso dello spazio.</p>
@@ -49,7 +43,7 @@
                     <input type="text" class="form-control" id="contact-name" required>
                 </div>
                 <div class="form-group">
-                    <label for="contact-email">Email</label>
+                    <label for="contact-email">Indirizzo email</label>
                     <input type="email" class="form-control" id="contact-email" required>
                 </div>
                 <div class="form-group">
@@ -58,11 +52,55 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Invia</button>
             </form>
-            <!-- spazio bianco -->
             <div style="height: 30px;"></div>
             <p class="mb-0">Designed and programmed by Dimitri Springhetti and Leonardo Corroppolo</p>
         </div>
     </footer>
+</div>
+
+<div class="modal fade" id="attrezzatureModal" tabindex="-1" role="dialog" aria-labelledby="attrezzatureModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="attrezzatureModalLabel">Attrezzature Disponibili</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Amplificatore per chitarra</li>
+                    <li>Amplificatore per basso</li>
+                    <li>Batteria</li>
+                    <li>Impianto audio</li>
+                    <li>Tastiera</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="regolamentoModal" tabindex="-1" role="dialog" aria-labelledby="regolamentoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="regolamentoModalLabel">Regolamento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Chiudi">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Per garantire un uso equo e armonioso della Sala Prove Don Orione, è necessario rispettare le seguenti regole:</p>
+                <ul>
+                    <li>È obbligatorio rispettare l'orario concordato</li>
+                    <li>È vietato fumare all'interno della sala</li>
+                    <li>È vietato consumare cibo e bevande all'interno della sala</li>
+                    <li>È necessario lasciare la sala in ordine e pulita</li>
+                    <li>È necessario avvertire nella sezione dedicata del sito in caso di problemi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="popupPrenotazione" tabindex="-1" role="dialog" aria-labelledby="popupPrenotazioneLabel" aria-hidden="true">

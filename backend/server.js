@@ -28,6 +28,7 @@ app.post('/sendData', (req, res) => {
 
     // Risposta al client sempre "not available"
     const responseData = "not available";
+    
     res.json({ response: responseData });
 });
 
