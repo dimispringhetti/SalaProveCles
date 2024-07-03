@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstName = document.getElementById('first-name').value;
         const lastName = document.getElementById('last-name').value;
         const email = document.getElementById('email').value;
+        const hiddenInput = document.getElementById('hidden-input').value;
+
+        // Controlla se hiddenInput è vuoto
+        if (hiddenInput !== '') {
+            return;
+        }
 
         // Controlla se l'ora di inizio è prima dell'ora di fine
         if (!startEndTime(startTime, endTime)) {
@@ -76,6 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('contact-name').value;
         const email = document.getElementById('contact-email').value;
         const message = document.getElementById('contact-message').value;
+
+        // Controlla se hidden-input è vuoto
+        if (hiddenInput !== '') {
+            return;
+        }
 
         // Validazione email
         if (!isValidEmail(email)) {

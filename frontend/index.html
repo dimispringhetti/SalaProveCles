@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala Prove Don Orione Cles</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="blue_styles.css" rel="stylesheet">
+    
+
 </head>
 <body>
- 
 <div class="container">
     <h1 class="mb-4">Sala Prove Don Orione Cles</h1>
 
@@ -26,6 +27,9 @@
             </button>
         </div>
     </div>
+    
+    <!-- foto della sala -->
+    <img src="foto_sala.jpg" class="img-fluid mb-4" alt="Sala Prove Don Orione Cles">
 
     <h2 class="mb-3">Come Prenotarsi:</h2>
     <p class="mb-4">Per prenotare la Sala Prove Don Orione a Cles, è necessario compilare il modulo di prenotazione disponibile sul nostro sito web. Una volta compilato, riceverai un codice di accesso tramite email. Questo codice ti consentirà di aprire la scatoletta contenente le chiavi della sala esclusivamente nell'orario prenotato. Assicurati di rispettare l'orario concordato per garantire un uso equo e armonioso dello spazio.</p>
@@ -50,6 +54,7 @@
                     <label for="contact-message">Messaggio</label>
                     <textarea class="form-control" id="contact-message" rows="3" required></textarea>
                 </div>
+                <input type="hidden" id="hidden-input">
                 <button type="submit" class="btn btn-primary btn-block">Invia</button>
             </form>
             <div style="height: 30px;"></div>
@@ -138,6 +143,7 @@
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" required>
                     </div>
+                    <input type="hidden" id="hidden-input">
                     <button type="submit" class="btn btn-primary btn-block">Prenota</button>
                 </form>
             </div>

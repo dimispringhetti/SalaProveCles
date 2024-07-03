@@ -1,124 +1,146 @@
 /* Stile per il corpo della pagina */
 body {
-    background-color: #121212; /* Colore di sfondo scuro */
-    color: #e0e0e0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    /* sfomatura di colore di sfondo */
+    background: linear-gradient(#121212, #BB86FC); /* Nero opaco e grigio scuro */
+    color: #ECEFF1; /* Grigio chiaro */
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Per evitare lo scorrimento orizzontale */
 }
 
 /* Stili per il contenitore principale */
 .container {
-    max-width: 1200px;
-    margin: 50px auto;
-    background-color: #1f1f1f; /* Colore di sfondo del contenitore scuro */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    max-width: 1300px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    background: #1E1E1E; /* Grigio scuro */
 }
 
 /* Stili per i campi del modulo */
 .form-control {
-    background-color: #2c2c2c;
-    border: 1px solid #444444;
-    color: #e0e0e0;
+    background-color: #282828; /* Grigio molto scuro */
+    border: 1px solid #3A3A3A; /* Grigio scuro */
+    color: #ECEFF1; /* Grigio chiaro */
     border-radius: 5px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-control:focus {
-    border-color: #1e88e5; /* Colore del bordo al focus */
-    box-shadow: 0 0 5px rgba(30, 136, 229, 0.5); /* Effetto ombra al focus */
+    border-color: #BB86FC; /* Viola */
+    box-shadow: 0 0 8px rgba(187, 134, 252, 0.5); /* Effetto ombra al focus */
 }
 
 /* Stile per il pulsante principale */
 .btn-primary {
-    background-color: #1e88e5;
-    border-color: #1e88e5;
-    border-radius: 15px;
-    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-out;
+    background-color: #BB86FC; /* Viola */
+    border-color: #BB86FC; /* Viola */
+    border-radius: 25px;
+    color: #121212; /* Nero opaco */
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-out, box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #1565c0;
-    border-color: #0d47a1;
+    background-color: #9E67D7; /* Viola più scuro */
+    border-color: #9E67D7; /* Viola più scuro */
     transform: scale(1.05); /* Effetto di zoom al hover */
+    color: #ECEFF1; /* Grigio chiaro */
 }
 
 /* Stile per le etichette dei campi del modulo */
 .form-group label {
-    color: #b0bec5; /* Colore più chiaro per le etichette */
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    color: #B0BEC5; /* Grigio chiaro */
 }
 
 /* Stile per l'intestazione */
-h1, h2 {
+h1 {
     text-align: center;
-    color: #e0e0e0;
+    color: #BB86FC; /* Viola */
+    font-size: 4.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-
-h4 {
-    text-align: left;
-    padding-left: 25px;
-    color: #e0e0e0;
+h2 {
+    text-align: center;
+    color: #BB86FC; /* Viola */
+    font-size: 2.0rem;
 }
 
 /* Stile per il footer */
 footer {
-    margin-top: 20px;
+    margin-top: 40px;
     text-align: center;
-    color: #b0bec5;
+    color: #B0BEC5; /* Grigio chiaro */
     font-size: 0.9rem;
 }
 
-/* Stili aggiuntivi per migliorare l'aspetto generale */
-/* Esempio di gradient background */
-.container {
-    background: linear-gradient(to right, #1f1f1f, #2c2c2c);
+/* Stili per i modali */
+.modal-content {
+    background-color: #1E1E1E; /* Grigio scuro */
+    color: #ECEFF1; /* Grigio chiaro */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: none;
 }
 
-/* Esempio di bordi arrotondati per pulsanti e form */
-.btn, .form-control {
-    border-radius: 8px;
+.modal-header, .modal-footer {
+    border-bottom: 1px solid #282828; /* Grigio molto scuro */
+    border-top: none;
 }
 
-/* Aggiungi padding interno ai pulsanti */
-.btn {
-    padding: 0.75rem 1.5rem;
+.modal-header .close {
+    color: #ECEFF1; /* Grigio chiaro */
 }
 
-/* Effetto ombra sottile su contenitore */
-.container {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Miglioramento spaziatura paragrafi */
-p {
-    margin-bottom: 1.5rem;
-}
-
-/* Miglioramento spaziatura delle liste */
-ul {
-    padding-left: 20px;
-    margin-bottom: 1.5rem;
-}
-
-/* Stile per le voci delle liste */
-ul li {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Stili per il contact box */
-.contact-box {
-    background-color: #2c2c2c;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.contact-box h5 {
-    color: #e0e0e0;
+.modal-title {
+    color: #BB86FC; /* Viola */
     text-align: center;
-    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 20px;
+    background-color: #282828; /* Grigio molto scuro */
+}
+
+.modal-body ul, .modal-body p {
+    margin-top: 20px;
+    color: #ECEFF1; /* Grigio chiaro */
+}
+
+/* Stili per il pulsante chiudi */
+.modal-header .close:hover {
+    color: #9E67D7; /* Viola più scuro */
+}
+
+.modal-body form .form-control {
+    background-color: #282828; /* Grigio molto scuro */
+    border-color: #3A3A3A; /* Grigio scuro */
+    color: #ECEFF1; /* Grigio chiaro */
+}
+
+.modal-body form .form-control:focus {
+    border-color: #BB86FC; /* Viola */
+    box-shadow: 0 0 8px rgba(187, 134, 252, 0.5);
+}
+
+.modal-footer .btn {
+    background-color: #BB86FC; /* Viola */
+    border-color: #BB86FC; /* Viola */
+    color: #121212; /* Nero opaco */
+}
+
+.modal-footer .btn:hover {
+    background-color: #9E67D7; /* Viola più scuro */
+    border-color: #9E67D7; /* Viola più scuro */
+    color: #ECEFF1; /* Grigio chiaro */
+}
+
+/* Stile per i paragrafi */
+p {
+    font-size: 1.2rem; /* Puoi modificare questa dimensione secondo le tue necessità */
 }
