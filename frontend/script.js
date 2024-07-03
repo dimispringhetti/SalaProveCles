@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstName = document.getElementById('first-name').value;
         const lastName = document.getElementById('last-name').value;
         const email = document.getElementById('email').value;
+        const hiddenInput = document.getElementById('hidden-input').value;
+
+        // Controlla se hiddenInput è vuoto
+        if (hiddenInput !== '') {
+            return;
+        }
 
         // Controlla se l'ora di inizio è prima dell'ora di fine
         if (!startEndTime(startTime, endTime)) {
@@ -41,24 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // invio dati al server
         const answer = await sendData(data);
 
-        // se il server risponde "not available" mostra un messaggio di errore
-        if (answer === "not available") {
-            alert('Data e ora non disponibili, prova con un altro orario.');
-            return;
-        }
-
         // Se il server risponde con successo mostra un messaggio di conferma
-        else {
+        if (answer === "available") {
             // Crea un messaggio di conferma
             const confirmationMessage = `
-                Prenotazione confermata!
-                ti arriverà una mail di conferma con i dettagli della prenotazione e il codice di ingresso.
+            Prenotazione confermata!
+            ti arriverà una mail di conferma con i dettagli della prenotazione e il codice di ingresso.
 
-                Data: ${date}
-                Ora di Inizio: ${startTime}
-                Ora di Fine: ${endTime}
-                Nome: ${firstName} ${lastName}
-                Email: ${email}
+            Data: ${date}
+            Ora di Inizio: ${startTime}
+            Ora di Fine: ${endTime}
+            Nome: ${firstName} ${lastName}
+            Email: ${email}
+            
             `;
 
             // Mostra il messaggio di conferma
@@ -66,6 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Reset del modulo
             bookingForm.reset();
+        }
+        // Se il server risponde con errore mostra un messaggio di errore
+        else {
+            alert('Data e ora non disponibili, prova con un altro orario.');
+            return;
         }
     });
 
@@ -76,6 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('contact-name').value;
         const email = document.getElementById('contact-email').value;
         const message = document.getElementById('contact-message').value;
+
+        // Controlla se hidden-input è vuoto
+        if (hiddenInput !== '') {
+            return;
+        }
 
         // Validazione email
         if (!isValidEmail(email)) {

@@ -1,0 +1,5 @@
+DATA,ORA_INIZIO,ORA_FINE,NOME,COGNOME,EMAIL
+2024-07-08,15:00,17:00,data,Neri,paolo.neri@example.com
+2024-07-09,11:00,13:00,data,Rossi,sara.rossi@example.com
+2024-07-13,09:00,11:00,data,Verdi,giulia.verdi@example.com
+2024-07-29,15:00,17:00,data,Neri,paolo.neri@example.com
