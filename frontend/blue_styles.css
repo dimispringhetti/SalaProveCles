@@ -1,6 +1,6 @@
 /* Stile per il corpo della pagina */
-body {
-    background: linear-gradient(#dcdcdc, #000000); /* Gradient background */
+body {    
+    background-color: #E0E0E0;
     color: #131414; /* Colore del testo principale */
     font-family: 'Roboto', Arial, sans-serif; /* Font moderno */
     line-height: 1.6; /* Spaziatura delle righe */
