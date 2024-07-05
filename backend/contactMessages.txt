@@ -1,1 +1,0 @@
-{"name":"mario poli","email":"mariopoli@gmail.com","message":"test message"}
