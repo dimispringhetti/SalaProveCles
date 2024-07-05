@@ -1,0 +1,146 @@
+/* Stile per il corpo della pagina */
+body {
+    /* sfumatura di colore di sfondo */
+    background: linear-gradient(#121212, #558B2F); /* Verde scuro e verde meno acceso */
+    color: #ECEFF1; /* Grigio chiaro */
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Per evitare lo scorrimento orizzontale */
+}
+
+/* Stili per il contenitore principale */
+.container {
+    max-width: 1300px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    background: #1E1E1E; /* Grigio scuro */
+}
+
+/* Stili per i campi del modulo */
+.form-control {
+    background-color: #282828; /* Grigio molto scuro */
+    border: 1px solid #3A3A3A; /* Grigio scuro */
+    color: #ECEFF1; /* Grigio chiaro */
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #558B2F; /* Verde scuro */
+    box-shadow: 0 0 8px rgba(85, 139, 47, 0.5); /* Effetto ombra al focus */
+}
+
+/* Stile per il pulsante principale */
+.btn-primary {
+    background-color: #558B2F; /* Verde scuro */
+    border-color: #558B2F; /* Verde scuro */
+    border-radius: 25px;
+    color: #121212; /* Nero opaco */
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-out, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #4E7D21; /* Verde scuro più intenso */
+    border-color: #4E7D21; /* Verde scuro più intenso */
+    transform: scale(1.05); /* Effetto di zoom al hover */
+    color: #ECEFF1; /* Grigio chiaro */
+}
+
+/* Stile per le etichette dei campi del modulo */
+.form-group label {
+    color: #B0BEC5; /* Grigio chiaro */
+}
+
+/* Stile per l'intestazione */
+h1 {
+    text-align: center;
+    color: #558B2F; /* Verde scuro */
+    font-size: 4.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+h2 {
+    text-align: center;
+    color: #558B2F; /* Verde scuro */
+    font-size: 2.0rem;
+}
+
+/* Stile per il footer */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #B0BEC5; /* Grigio chiaro */
+    font-size: 0.9rem;
+}
+
+/* Stili per i modali */
+.modal-content {
+    background-color: #1E1E1E; /* Grigio scuro */
+    color: #ECEFF1; /* Grigio chiaro */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: none;
+}
+
+.modal-header, .modal-footer {
+    border-bottom: 1px solid #282828; /* Grigio molto scuro */
+    border-top: none;
+}
+
+.modal-header .close {
+    color: #ECEFF1; /* Grigio chiaro */
+}
+
+.modal-title {
+    color: #558B2F; /* Verde scuro */
+    text-align: center;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 20px;
+    background-color: #282828; /* Grigio molto scuro */
+}
+
+.modal-body ul, .modal-body p {
+    margin-top: 20px;
+    color: #ECEFF1; /* Grigio chiaro */
+}
+
+/* Stili per il pulsante chiudi */
+.modal-header .close:hover {
+    color: #4E7D21; /* Verde scuro più intenso */
+}
+
+.modal-body form .form-control {
+    background-color: #282828; /* Grigio molto scuro */
+    border-color: #3A3A3A; /* Grigio scuro */
+    color: #ECEFF1; /* Grigio chiaro */
+}
+
+.modal-body form .form-control:focus {
+    border-color: #558B2F; /* Verde scuro */
+    box-shadow: 0 0 8px rgba(85, 139, 47, 0.5);
+}
+
+.modal-footer .btn {
+    background-color: #558B2F; /* Verde scuro */
+    border-color: #558B2F; /* Verde scuro */
+    color: #121212; /* Nero opaco */
+}
+
+.modal-footer .btn:hover {
+    background-color: #4E7D21; /* Verde scuro più intenso */
+    border-color: #4E7D21; /* Verde scuro più intenso */
+    color: #ECEFF1; /* Grigio chiaro */
+}
+
+/* Stile per i paragrafi */
+p {
+    font-size: 1.2rem; /* Puoi modificare questa dimensione secondo le tue necessità */
+}
