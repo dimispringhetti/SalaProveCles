@@ -3,7 +3,7 @@ node_modules/
 
 # file di log
 data.csv
-histiric_data.csv
+histirical_data.csv
 
 # package json
 package-lock.json

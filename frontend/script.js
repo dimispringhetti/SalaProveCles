@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Controlla se la data è nel futuro
-        if (!dateInFuture(startTime, date)) {
-            alert('La data e l\'ora devono essere nel futuro.');
+        // Controlla se la data è nel futuro e se è valida
+        if (!dateInFuture(startTime, date) || !validCharacters(date) || !validCharacters(startTime) || !validCharacters(endTime)) {
+            alert('La data e l\'ora devono essere nel futuro e devono coincidere il formato richiesto.');
             return;
         }
 
@@ -34,7 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // salvataggio dati in un oggetto json
+        // Validazione nome e cognome
+        if (!validCharacters(firstName) || !validCharacters(lastName)) {
+            alert('Nome e cognome non possono contenere caratteri speciali.');
+            return;
+        }
+
+        // Salvataggio dati in un oggetto JSON
         const data = {
             date: date,
             startTime: startTime,
@@ -44,22 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
             email: email
         };
 
-        // invio dati al server
+        // Invio dati al server
         const answer = await sendData(data);
-
-        // Se il server risponde con successo mostra un messaggio di conferma
-        if (answer === "available") {
+        if (answer === "not logged") {
+            alert('Effettua il login nelle modalità indicate per prenotare la sala.');
+            return;
+        } else if (answer === "available") {
             // Crea un messaggio di conferma
             const confirmationMessage = `
             Prenotazione confermata!
-            ti arriverà una mail di conferma con i dettagli della prenotazione e il codice di ingresso.
+            Ti arriverà una mail di conferma con i dettagli della prenotazione e il codice di ingresso.
 
             Data: ${date}
             Ora di Inizio: ${startTime}
             Ora di Fine: ${endTime}
             Nome: ${firstName} ${lastName}
             Email: ${email}
-            
             `;
 
             // Mostra il messaggio di conferma
@@ -67,9 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Reset del modulo
             bookingForm.reset();
-        }
-        // Se il server risponde con errore mostra un messaggio di errore
-        else {
+        } else {
             alert('Data e ora non disponibili, prova con un altro orario.');
             return;
         }
@@ -82,8 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('contact-name').value;
         const email = document.getElementById('contact-email').value;
         const message = document.getElementById('contact-message').value;
+        const hiddenInput = document.getElementById('hidden-input').value;
 
-        // Controlla se hidden-input è vuoto
+        // Controlla se hiddenInput è vuoto
         if (hiddenInput !== '') {
             return;
         }
@@ -94,18 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // salvataggio dati in un oggetto json
+        // Salvataggio dati in un oggetto JSON
         const data = {
             name: name,
             email: email,
             message: message
         };
 
-        // invio dati al server
+        // Invio dati al server
         const answer = await sendContactData(data);
 
-        // se il server risponde con successo mostra un messaggio di conferma
-        if (answer === "success") {
+        // Se il server risponde con successo mostra un messaggio di conferma
+        if (answer.response === 'success') {
             alert('Messaggio inviato con successo!');
 
             // Reset del modulo
@@ -134,6 +139,12 @@ function dateInFuture(startTime, date) {
     return currentDate < selectedDate;
 }
 
+// Funzione per controllare se ci sono caratteri speciali
+function validCharacters(input) {
+    const regex = /^[a-zA-Z0-9\s]*$/;
+    return regex.test(input);
+}
+
 // Funzione per inviare i dati al server
 async function sendData(data) {
     const response = await fetch('http://localhost:3000/sendData', {
@@ -144,10 +155,10 @@ async function sendData(data) {
         body: JSON.stringify({ data: data })
     });
 
-    // attesa risposta
+    // Attesa risposta
     const responseData = await response.json();
 
-    // restituisce la risposta come stringa
+    // Restituisce la risposta come stringa
     return responseData.response;
 }
 
@@ -161,9 +172,9 @@ async function sendContactData(data) {
         body: JSON.stringify({ data: data })
     });
 
-    // attesa risposta
+    // Attesa risposta
     const responseData = await response.json();
 
-    // restituisce la risposta come stringa
+    // Restituisce la risposta come stringa
     return responseData.response;
 }
